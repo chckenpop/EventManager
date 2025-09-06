@@ -1,14 +1,14 @@
-from utils.db import users_collection
+from App.utils.db import users_collection
 import bcrypt
 ALGORITHM = "HS256"
 
-def signup(username: str,password: str):
+def signup(username: str,password: str,db):
     #signup logic like insert the username and password into the db hash the password too ts simple af
     existing_user = users_collection.find_one({"username":username})
     if existing_user:
         return {"message": "successfully signedup"}
     salt = bcrypt.gensalt()
-    hashed_password = bcrypt.hashpw(password.encode(utf-8),salt)
+    hashed_password = bcrypt.hashpw(password.encode("utf-8"),salt)
     user_document = {
         "username":username,
         "password":hashed_password
