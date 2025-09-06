@@ -1,8 +1,7 @@
-from utils.db import users_collection
+from App.utils.db import users_collection
 import bcrypt
 import time
 def signup(username: str, password: str):
-
     existing_user = users_collection.find_one({"username": username})
     if existing_user:
         return {"success": False, "message": "Username already exists"}
@@ -23,7 +22,7 @@ def signup(username: str, password: str):
     users_collection.insert_one(user_document)
     return {"success": True, "message": f"Successfully signed up with UID:{uid}",
         "uid":uid}
-=======
+
 def signup(username: str,password: str,db):
     #signup logic like insert the username and password into the db hash the password too ts simple af
     existing_user = users_collection.find_one({"username":username})
@@ -42,8 +41,4 @@ def signup(username: str,password: str,db):
         return{"message": "lol bozo"}
 def login(username: str,password:str,db: str):
     #login logic check if exists 
-    
-    
     return {"message": "sucessfully locked in"}
->>>>>>> 9d53c873ceb14b1feb944e9ca67b712a9affdb49
-
